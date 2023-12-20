@@ -28,4 +28,6 @@ public interface DishMapper {
     void update(Dish dish);
     @Select("SELECT * FROM dish WHERE category_id=#{categoryId}")
     List<Dish> getByCategoryId(Integer categoryId);
+
+    void deleteByIds(List<Long>ids);
 }

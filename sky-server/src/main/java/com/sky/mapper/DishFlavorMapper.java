@@ -15,10 +15,7 @@ public interface DishFlavorMapper {
      * @param flavors
      */
     void insertBatch(List<DishFlavor> flavors);
-
-    @Delete("DELETE FROM dish_flavor WHERE dish_id=#{dishId}")
-    void deleteByDishId(long dishId);
-
     @Select("SELECT * FROM dish_flavor WHERE dish_id=#{dishId}")
     List<DishFlavor> getByDishId(Integer dishId);
+    void delete(List<Long> dishIds);
 }

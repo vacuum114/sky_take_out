@@ -17,4 +17,8 @@ public interface DishService {
     void editDish(DishDTO dto);
 
     List<Dish> getByCategoryId(Integer categoryId);
+
+    void setStatus(Integer status,long id);
+
+    void delele(List<Long>ids);
 }

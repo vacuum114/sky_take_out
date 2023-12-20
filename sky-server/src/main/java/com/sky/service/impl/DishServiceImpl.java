@@ -12,14 +12,17 @@ import com.sky.mapper.DishMapper;
 import com.sky.result.PageResult;
 import com.sky.service.DishService;
 import com.sky.vo.DishVO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Slf4j
 public class DishServiceImpl implements DishService {
     @Autowired
     private DishMapper dishMapper;
@@ -64,6 +67,7 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
+    @Transactional
     public void editDish(DishDTO dto) {
         //修改单个菜品的信息
         Dish dish=new Dish();
@@ -71,7 +75,9 @@ public class DishServiceImpl implements DishService {
         dishMapper.update(dish);
         //修改该菜品下的口味，因为新增口味没有对应的id，无法进行update，只能先删除后插入
         //先删除原有口味
-        flavorMapper.deleteByDishId(dto.getId());
+        List<Long>l=new ArrayList<>();
+        l.add(dto.getId());
+        flavorMapper.delete(l);
         //再添加新口味
         List<DishFlavor>list=dto.getFlavors();
         if(list!=null && list.size()!=0){
@@ -85,5 +91,20 @@ public class DishServiceImpl implements DishService {
     @Override
     public List<Dish> getByCategoryId(Integer id) {
         return dishMapper.getByCategoryId(id);
+    }
+
+    @Override
+    public void setStatus(Integer status,long id) {
+        Dish dish=new Dish();
+        dish.setId(id);
+        dish.setStatus(status);
+        dishMapper.update(dish);
+    }
+
+    @Override
+    public void delele(List<Long>ids) {
+        log.info("删除菜品:{}",ids);
+        flavorMapper.delete(ids);
+        dishMapper.deleteByIds(ids);
     }
 }

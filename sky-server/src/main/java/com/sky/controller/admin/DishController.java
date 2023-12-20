@@ -55,4 +55,20 @@ public class DishController {
         dishService.editDish(dto);
         return Result.success();
     }
+
+    @PostMapping("/status/{status}")
+    @ApiOperation("菜品起售、停售")
+    public Result setStatus(@PathVariable Integer status,long id)
+    {
+        dishService.setStatus(status,id);
+        return Result.success();
+    }
+    @DeleteMapping
+    @ApiOperation("批量删除菜品")
+    public Result delete(@RequestParam List<Long>ids)
+    {
+        dishService.delele(ids);
+
+        return Result.success();
+    }
 }
