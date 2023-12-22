@@ -26,6 +26,15 @@
         order by d.create_time desc
     </select>
 
+    <select id="getByCategoryId" resultType="com.sky.entity.Dish">
+        SELECT * FROM dish
+            <where>
+                <if test="categoryId != null">category_id=#{categoryId}</if>
+                <if test="status != null">and status=#{status}</if>
+            </where>
+        order by create_time desc
+    </select>
+
     <update id="update" parameterType="com.sky.entity.Dish">
         UPDATE dish
         <set>

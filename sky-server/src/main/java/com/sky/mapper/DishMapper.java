@@ -23,11 +23,11 @@ public interface DishMapper {
 
     Page<DishVO> pagequery(DishPageQueryDTO dto);
     @Select("SELECT * FROM dish WHERE id=#{id}")
-    Dish getById(Integer id);
+    Dish getById(Long id);
     @AutoFill(OperationType.UPDATE)
     void update(Dish dish);
-    @Select("SELECT * FROM dish WHERE category_id=#{categoryId}")
-    List<Dish> getByCategoryId(Integer categoryId);
+
+    List<Dish> getByCategoryId(Dish dish);
 
     void deleteByIds(List<Long>ids);
 }
