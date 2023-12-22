@@ -7,15 +7,15 @@ sky:
     username: root
     password: 32408
   alioss:
-    endpoint: oss-cn-shenzhen.aliyuncs.com
-    access-key-secret: RT7FD4iuNclIREemkrNqOZwrDZOpAX
-    access-key-id: LTAI5tCZXHXaq94uiXMi2QWa
-    bucket-name: hmleadnews1919
+    endpoint: 
+    access-key-secret: 
+    access-key-id: 
+    bucket-name:
   redis:
     host: localhost
     port: 6379
     password: 32408
     database: 1
   wechat:
-    appid: wx13650124b96fb23a
-    secret: d63757a27fd045ce5c88fb297b8d8465
+    appid:
+    secret: 
